@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const SideBar = () => {
   return (
-    <div className='flex flex-col thin-border items-center h-[100vh] w-[300px] shadow py-[1.5rem] px-[1rem]'>
+    <div className='flex flex-col thin-border items-center w-[300px] shadow py-[1.5rem] px-[1rem]'>
       <h2 className="logo mb-[2rem] text-white text-center font-[700] text-[1.5rem]">NoteWise</h2>
 
       <ul className="options">

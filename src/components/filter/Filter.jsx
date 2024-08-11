@@ -1,6 +1,5 @@
 import React from "react";
 import { filterTags } from "../../constants";
-import { IoAddSharp } from "react-icons/io5";
 
 const Filter = () => {
   return (
@@ -12,10 +11,6 @@ const Filter = () => {
           </button>
         ))}
       </div>
-
-      <button className="add__note flex items-center rounded-[50px] gap-[.3rem] bg-[var(--accent-color)] px-[1rem] py-[.6rem] text-[var(--title-color)]">
-      <IoAddSharp className="text-[1.2rem]" /> Add note
-      </button>
     </div>
   );
 };
