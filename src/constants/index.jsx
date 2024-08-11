@@ -7,7 +7,7 @@ export const sideBarContent = [
     {
         icon: <CgNotes />,
         label: 'All notes',
-        route: '/AllNotes'
+        route: '/'
     },
     {
         icon: <GoHeart />,
