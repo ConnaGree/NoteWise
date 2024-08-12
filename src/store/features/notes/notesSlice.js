@@ -1,6 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
+// Date formatter
+function formatDate(date) {
+  const options = { day: 'numeric', month: 'short', year: 'numeric' };
+  return new Intl.DateTimeFormat('en-GB', options).format(date);
+}
+
+
 const loadDataFromLocalStorage = () => {
     try {
       const notes = localStorage.getItem("notes");
@@ -21,7 +28,8 @@ const saveDataToLocalStorage = (notes) => {
 
 const initialState = {
   notes: loadDataFromLocalStorage(),
-  editorOpen: false
+  editorOpen: false,
+  filteredNotes: loadDataFromLocalStorage()
 };
 
 const notesSlice = createSlice({
@@ -44,12 +52,16 @@ const notesSlice = createSlice({
         const updatedNotes = state.notes.filter(note => note.id !== action.payload.id)
         state.notes = updatedNotes
         saveDataToLocalStorage(state.notes)
+    },
+    filterNoteByDate: (state) => {
+      const filteredNotes = state.notes.filter(note => note.date === formatDate(new Date()))
+      state.filteredNotes = filteredNotes
     }
   },
 });
 
-
+export const selectNoteById = (state, id) => state.notes.notes.filter(note => note.id === Number(id))
 export const allNotes = (state) => state.notes.notes
 export const editorStatus = (state) => state.notes.editorOpen
-export const { addPost, openEditor, closeEditor, removeNote } = notesSlice.actions;
+export const { addPost, openEditor, closeEditor, removeNote, getNote } = notesSlice.actions;
 export default notesSlice.reducer;

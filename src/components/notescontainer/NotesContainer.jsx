@@ -1,14 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { allNotes } from "../../store/features/notes/notesSlice";
 import Note from "../note/Note";
 
-const NotesContainer = () => {
-  const notes = useSelector(allNotes);
-  console.log(notes);
+const NotesContainer = ({notes}) => {
 
   return (
-    <div>
+    <div className="">
       {notes.length === 0 ? (
         <p className="mt-[3rem] text-center text-[var(--mute-color)]">
           No notes so far...
@@ -16,7 +12,7 @@ const NotesContainer = () => {
       ) : (
         <div className="mt-[3rem] flex gap-[.7rem] flex-wrap">
           {notes.map((note, i) => (
-            <Note key={i} note={note} />
+              <Note key={i} note={note} />
           ))}
         </div>
       )}
