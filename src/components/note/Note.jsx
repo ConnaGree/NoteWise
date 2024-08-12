@@ -4,6 +4,8 @@ import { GoHeart, GoTrash } from "react-icons/go";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { removeNote } from "../../store/features/notes/notesSlice";
+import { addToFav } from "../../store/features/favorites/favoritesSlice";
+import { Link } from "react-router-dom";
 
 const Note = ({ note }) => {
   const [options, setOptions] = useState(false);
@@ -11,6 +13,12 @@ const Note = ({ note }) => {
 
   const handleTrashNote = () => {
     dispatch(removeNote(note));
+    setOptions(!options);
+  };
+
+  const handleAddToFav = () => {
+    dispatch(addToFav(note));
+    setOptions(!options);
   };
 
   const handleToggle = () => {
@@ -31,21 +39,28 @@ const Note = ({ note }) => {
       <div className="date text-[.8rem] text-[var(--mute-color)]">
         {note.date}
       </div>
-      <div className="excerpt">
-        <div className="title">
-          <h3 className="flex gap-[1rem] mb-[1rem] text-white items-center">
-            <FaCircle className="text-[.7rem] text-[var(--accent-color)]" />{" "}
-            {note.content.title}
-          </h3>
+      <Link to={`/viewnote/${note.id}`}>
+        <div className="excerpt">
+          <div className="title">
+            <h3 className="flex gap-[1rem] mb-[1rem] text-white items-center">
+              <FaCircle className="text-[.7rem] text-[var(--accent-color)]" />{" "}
+              {note.content.title.length > 14
+                ? `${note.content.title.slice(0, 20)}...`
+                : note.content.title}
+            </h3>
+          </div>
+          <p className="desc text-[.8rem] text-[var(--mute-color)]">
+            {note.content.excerpt}...
+          </p>
         </div>
-        <p className="desc text-[.8rem] text-[var(--mute-color)]">
-          {note.content.excerpt}...
-        </p>
-      </div>
+      </Link>
       {options && (
         <div className="shadow z-[1000] py-[1rem] px-[.6rem] rounded-md text-white bg-[var(--accent-color)] options__container absolute top-[3rem] right-[1rem]">
           <ul className="list-none">
-            <li className="flex text-[1rem] mb-[1rem] items-center gap-[.4rem]">
+            <li
+              onClick={handleAddToFav}
+              className="flex text-[1rem] mb-[1rem] items-center gap-[.4rem]"
+            >
               <GoHeart /> Like
             </li>
             <li

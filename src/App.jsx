@@ -4,6 +4,8 @@ import SideBar from './components/sidebar/SideBar'
 import './index.css'
 import EditNote from './components/editnote/EditNote';
 import SingleNote from './components/singlenote/SingleNoteView';
+import ViewNote from './components/viewnote/ViewNote';
+import ShowFavorites from './components/showfavorites/ShowFavorites';
 function App() {
 
   return (
@@ -12,10 +14,12 @@ function App() {
       {/* <MainField /> */}
       <Routes>
         <Route path="/" element={<MainField />} />
-        <Route path="/favorites" element={<MainField />} />
+        <Route path="/favorites" element={<ShowFavorites />} />
+        <Route path="/favorites/:id" element={<ViewNote />} />
         <Route path="/trash" element={<MainField />} />
         <Route path="/editnote" element={<EditNote />} />
         <Route path="/singlenote" element={<SingleNote />} />
+        <Route path='/viewnote/:id' element={<ViewNote />} />
         {/* Add more routes as needed */}
       </Routes>
     </main>
