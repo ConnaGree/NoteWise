@@ -17,8 +17,6 @@ const Nav = () => {
     dispatch(openEditor());
   };
 
-  console.log(useSelector(editorStatus));
-
   return (
     <div className="flex items-center gap-[1rem] justify-between">
       <label
@@ -26,7 +24,7 @@ const Nav = () => {
         htmlFor=""
       >
         <input
-          placeholder="Search..."
+          placeholder="Search note..."
           className="bg-transparent outline-none w-full"
           type="text"
         />
