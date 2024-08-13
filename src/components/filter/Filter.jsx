@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { filterTags } from "../../constants";
+import { filterNoteByDate } from "../../store/features/notes/notesSlice";
+import { useDispatch } from "react-redux";
 
 const Filter = () => {
   // State to keep track of the currently selected tag
   const [selectedTag, setSelectedTag] = useState(null);
+  const dispatch = useDispatch();
 
-  // Function to handle button click
+  // Function to handle filter note
   const handleButtonClick = (tag) => {
     // Set the selected tag based on the button clicked
     setSelectedTag(tag);
+    dispatch(filterNoteByDate(tag)); // Dispatch the tag directly
   };
 
   return (
@@ -18,7 +22,11 @@ const Filter = () => {
           <button
             key={i}
             onClick={() => handleButtonClick(tag)}
-            className={`tag ${selectedTag === tag ? 'bg-[var(--accent-color)] text-white' : 'text-[var(--mute-color)] bg-[var(--ct-color)]'} text-[.9rem] px-[.8rem] py-[.5rem] rounded-[50px]`}
+            className={`tag ${
+              selectedTag === tag
+                ? "bg-[var(--accent-color)] text-white"
+                : "text-[var(--mute-color)] bg-[var(--ct-color)]"
+            } text-[.9rem] px-[.8rem] py-[.5rem] rounded-[50px]`}
           >
             {tag}
           </button>

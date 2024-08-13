@@ -26,4 +26,4 @@ export const sideBarContent = [
     },
 ]
 
-export const filterTags = ['All', 'Todays', 'This week', 'This month', 'older']
+export const filterTags = ['All', 'Today', 'This week', 'This month', 'Older']

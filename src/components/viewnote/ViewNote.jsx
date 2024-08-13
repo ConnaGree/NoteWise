@@ -18,7 +18,7 @@ const ViewNote = () => {
         <p className="content max-w-[1000px] leading-[1.7rem] my-[1.5rem] text-white">{note.content.description}</p>
 
         {note.tags.map((tag, i) => (
-            <span key={i} className="px-[1rem] mr-[.6rem] text-[.8rem] max-w-[150px] gap-[.6rem] py-[.5rem] rounded-[50px] bg-[var(--ct-color)] text-[var(--mute-color)]">{tag}</span>
+            <span key={i} className="px-[1rem] mr-[.6rem] text-[.8rem] max-w-[150px] gap-[.6rem] py-[.5rem] rounded-[50px] bg-[var(--ct-color)] text-[var(--mute-color)]">#{tag}</span>
         ))}
     </div>
   );

@@ -6,6 +6,7 @@ import EditNote from './components/editnote/EditNote';
 import SingleNote from './components/singlenote/SingleNoteView';
 import ViewNote from './components/viewnote/ViewNote';
 import ShowFavorites from './components/showfavorites/ShowFavorites';
+import Gradient from './components/gradient/Gradient';
 function App() {
 
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path='/viewnote/:id' element={<ViewNote />} />
         {/* Add more routes as needed */}
       </Routes>
+      {/* <Gradient /> */}
     </main>
   );
 }

@@ -3,7 +3,7 @@ import { FaCircle } from "react-icons/fa";
 import { GoHeart, GoTrash } from "react-icons/go";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { useDispatch } from "react-redux";
-import { removeNote } from "../../store/features/notes/notesSlice";
+import { formatDate, parseDateString, removeNote } from "../../store/features/notes/notesSlice";
 import { addToFav } from "../../store/features/favorites/favoritesSlice";
 import { Link } from "react-router-dom";
 
@@ -28,7 +28,9 @@ const Note = ({ note }) => {
   return (
     <div className="shadow relative cursor-pointer flex flex-col gap-[1rem] rounded-md bg-[var(--ct-color)] p-[.8rem] w-[320px]">
       <div className="header flex items-center justify-between">
-        <span className="new text-[var(--accent-color)]">new</span>
+        <span className="new text-[var(--accent-color)]">
+          {note.date === formatDate(new Date()) ? "New" : ""}
+        </span>
         <span className="tag font-[500] text-white text-[1.2rem]">
           {note.tags[0]}
         </span>
@@ -41,7 +43,7 @@ const Note = ({ note }) => {
       </div>
       <Link to={`/viewnote/${note.id}`}>
         <div className="excerpt">
-          <div className="title">
+          <div className="title hover:underline decoration-white">
             <h3 className="flex gap-[1rem] mb-[1rem] text-white items-center">
               <FaCircle className="text-[.7rem] text-[var(--accent-color)]" />{" "}
               {note.content.title.length > 14
