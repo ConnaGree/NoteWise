@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { allNotes, filteredNotes } from "../../store/features/notes/notesSlice"
+import { filteredNotes } from "../../store/features/notes/notesSlice"
 import Filter from '../filter/Filter'
 import Nav from '../navigation/Nav'
 import NotesContainer from '../notescontainer/NotesContainer'
