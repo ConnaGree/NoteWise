@@ -12,6 +12,7 @@ const Note = ({ note }) => {
   const dispatch = useDispatch();
 
   const handleTrashNote = () => {
+    console.log(note)
     dispatch(removeNote(note));
     setOptions(!options);
   };

@@ -37,6 +37,7 @@ const initialState = {
   notes: loadDataFromLocalStorage(),
   editorOpen: false,
   filteredNotes: loadDataFromLocalStorage(),
+  trashedNotes: []
 };
 
 // Note slice
@@ -60,11 +61,12 @@ const notesSlice = createSlice({
       saveDataToLocalStorage(state.notes);
     },
     removeNote: (state, action) => {
-      const updatedNotes = state.notes.filter(
-        (note) => note.id !== action.payload.id
+      const updatedNotes = state.filteredNotes.filter(
+        (note) => note.id != action.payload.id
       );
-      state.notes = updatedNotes;
+      state.filteredNotes = updatedNotes
       saveDataToLocalStorage(state.notes);
+      state.trashedNotes.push(action.payload)
     },
     filterNoteByDate: (state, action) => {
       const today = new Date();
@@ -117,6 +119,8 @@ const notesSlice = createSlice({
   },
 });
 
+
+export const trashedNotes = (state) => state.notes.trashedNotes;
 export const filteredNotes = (state) => state.notes.filteredNotes;
 export const selectNoteById = (state, id) =>
   state.notes.notes.filter((note) => note.id === Number(id));
