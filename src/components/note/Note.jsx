@@ -3,16 +3,22 @@ import { FaCircle } from "react-icons/fa";
 import { GoHeart, GoTrash } from "react-icons/go";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { useDispatch } from "react-redux";
-import { formatDate, parseDateString, removeNote } from "../../store/features/notes/notesSlice";
+import { formatDate, removeNote } from "../../store/features/notes/notesSlice";
 import { addToFav } from "../../store/features/favorites/favoritesSlice";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
+// Define animation variants for fading
+const variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
 
 const Note = ({ note }) => {
   const [options, setOptions] = useState(false);
   const dispatch = useDispatch();
 
   const handleTrashNote = () => {
-    console.log(note)
     dispatch(removeNote(note));
     setOptions(!options);
   };
@@ -27,7 +33,14 @@ const Note = ({ note }) => {
   };
 
   return (
-    <div className="shadow relative cursor-pointer flex flex-col gap-[1rem] rounded-md bg-[var(--ct-color)] p-[.8rem] w-[320px]">
+    <motion.div
+      className="shadow relative cursor-pointer flex flex-col gap-[1rem] rounded-md bg-[var(--ct-color)] p-[.8rem] w-[320px]"
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      variants={variants}
+      transition={{ duration: 0.3 }} // Adjust duration as needed
+    >
       <div className="header flex items-center justify-between">
         <span className="new text-[var(--accent-color)]">
           {note.date === formatDate(new Date()) ? "New" : ""}
@@ -58,7 +71,14 @@ const Note = ({ note }) => {
         </div>
       </Link>
       {options && (
-        <div className="shadow z-[1000] py-[1rem] px-[.6rem] rounded-md text-white bg-[var(--accent-color)] options__container absolute top-[3rem] right-[1rem]">
+        <motion.div
+          className="shadow z-[1000] py-[1rem] px-[.6rem] rounded-md text-white bg-[var(--accent-color)] options__container absolute top-[3rem] right-[1rem]"
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          variants={variants}
+          transition={{ duration: 0.3 }} // Adjust duration as needed
+        >
           <ul className="list-none">
             <li
               onClick={handleAddToFav}
@@ -73,9 +93,9 @@ const Note = ({ note }) => {
               <GoTrash /> Trash
             </li>
           </ul>
-        </div>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

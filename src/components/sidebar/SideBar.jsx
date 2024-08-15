@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { sideBarContent } from '../../constants'
 
 
 const SideBar = () => {
+  const [toggle, setToggle] = useState(false)
+
   return (
     <div className='flex flex-col thin-border items-center w-[300px] shadow py-[1.5rem] px-[1rem]'>
       <h2 className="logo mb-[2rem] text-white text-center font-[900] text-[1.9rem]">NoteWise</h2>

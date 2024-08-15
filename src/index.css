@@ -36,6 +36,10 @@ body {
   border-bottom: .1px solid rgba(136, 136, 136, 0.372);
 }
 
+.thin__right {
+  border-right: .2px solid rgba(136, 136, 136, 0.372);
+}
+
 .gt {
   background: linear-gradient(180deg, rgba(188, 165, 255, 0) 0%, #214D76 100%);
 }
