@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { CiSaveDown1 } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 import { addPost, closeEditor } from "../../store/features/notes/notesSlice";
+import { GoArrowLeft } from "react-icons/go";
+import { Link } from "react-router-dom";
 
 const EditNote = () => {
   const [title, setTitle] = useState('')
@@ -38,6 +40,9 @@ const EditNote = () => {
 
   return (
     <div className=" mt-[3rem] py-[1rem] px-[2rem] h-[100vh] w-full">
+      <div className="header flex items-center gap-[1rem] mb-[2rem]">
+            <Link to={'/'} className="text-white flex items-center gap-[.5rem]"><GoArrowLeft className="text-[2rem]" /> Back to notes</Link>
+        </div>
       <form className="w-full flex flex-col gap-[1rem]" action="">
         <input
           onChange={(e) => setTitle(e.target.value)}

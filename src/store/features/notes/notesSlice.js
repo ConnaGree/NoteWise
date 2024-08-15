@@ -37,7 +37,10 @@ const initialState = {
   notes: loadDataFromLocalStorage(),
   editorOpen: false,
   filteredNotes: loadDataFromLocalStorage(),
-  trashedNotes: []
+  searchResults: loadDataFromLocalStorage(),
+  trashedNotes: [],
+  inputFocus: false,
+  searchQuery: ''
 };
 
 // Note slice
@@ -116,12 +119,34 @@ const notesSlice = createSlice({
       state.filteredNotes = filteredNotesByDate;
       console.log(state.filteredNotes);
     },
+
+    searchNoteByTitle: (state, action) => {
+
+      if (action.payload === '') return
+      const searchedItems = state.filteredNotes.filter(note => note.content.title.toLowerCase().includes(action.payload.toLowerCase()))
+      console.log(searchedItems)
+      state.searchResults = searchedItems
+    },
+
+    getSearchQuery: (state, action) => {
+      state.searchQuery = action.payload
+      if (action.payload === '') {
+        state.searchResults = loadDataFromLocalStorage()
+      }
+    },
+
+    updateInputFocusStatus: (state, action) => {
+      state.inputFocus = action.payload
+    }
   },
 });
 
 
+export const searchKey = (state) => state.notes.searchQuery
+export const inputFocusStatus = (state) => state.notes.inputFocus
 export const trashedNotes = (state) => state.notes.trashedNotes;
 export const filteredNotes = (state) => state.notes.filteredNotes;
+export const searchedItems = (state) => state.notes.searchResults
 export const selectNoteById = (state, id) =>
   state.notes.notes.filter((note) => note.id === Number(id));
 export const allNotes = (state) => state.notes.notes;
@@ -132,5 +157,8 @@ export const {
   closeEditor,
   removeNote,
   filterNoteByDate,
+  searchNoteByTitle,
+  updateInputFocusStatus,
+  getSearchQuery
 } = notesSlice.actions;
 export default notesSlice.reducer;

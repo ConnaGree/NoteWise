@@ -3,18 +3,53 @@ import { FaRegMoon } from "react-icons/fa";
 import { IoAddSharp } from "react-icons/io5";
 import { LuSearch, LuSunMedium } from "react-icons/lu";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  editorStatus,
-  openEditor,
-} from "../../store/features/notes/notesSlice";
 import { Link } from "react-router-dom";
+import {
+  getSearchQuery,
+  inputFocusStatus,
+  openEditor,
+  searchNoteByTitle,
+  updateInputFocusStatus
+} from "../../store/features/notes/notesSlice";
 
 const Nav = () => {
-  const [isLight, setIsLight] = useState("false");
+  // Local state for theme toggle
+  const [isLight, setIsLight] = useState(false);
+  
+  // Local state for search input
+  const [searchKey, setSearchKey] = useState('');
+  
+  // Redux dispatch hook
   const dispatch = useDispatch();
+  
+  // Selector to get input focus state from Redux store
+  const inputState = useSelector(inputFocusStatus);
 
+  // Handler to open the note editor
   const handleOpenEditor = () => {
     dispatch(openEditor());
+  };
+
+  // Handler to search notes by title
+  const handleSearch = () => {
+    dispatch(searchNoteByTitle(searchKey));
+  };
+
+  // Update focus status on input focus
+  const handleFocus = () => {
+    dispatch(updateInputFocusStatus(true));
+  };
+
+  // Update focus status on input blur
+  const handleBlur = () => {
+    dispatch(updateInputFocusStatus(false));
+  };
+
+  // Handle search input changes
+  const handleQueryChange = (e) => {
+    const value = e.target.value;
+    setSearchKey(value);
+    dispatch(getSearchQuery(value));
   };
 
   return (
@@ -24,11 +59,15 @@ const Nav = () => {
         htmlFor=""
       >
         <input
-          placeholder="Search note..."
-          className="bg-transparent outline-none w-full"
+          value={searchKey}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onChange={handleQueryChange}
+          placeholder="Search note title..."
+          className="bg-transparent text-white outline-none w-full"
           type="text"
         />
-        <button className="search__button text-[1.5rem]">
+        <button onClick={handleSearch} className="search__button text-[1.5rem]">
           <LuSearch />
         </button>
       </label>

@@ -1,22 +1,36 @@
 import React, { useState } from "react";
 import { filterTags } from "../../constants";
-import { filterNoteByDate } from "../../store/features/notes/notesSlice";
-import { useDispatch } from "react-redux";
+import { filterNoteByDate, inputFocusStatus, searchKey } from "../../store/features/notes/notesSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { motion } from "framer-motion";
+
+// Define animation variants for fading
+const variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
 
 const Filter = () => {
-  // State to keep track of the currently selected tag
   const [selectedTag, setSelectedTag] = useState(null);
   const dispatch = useDispatch();
+  const isInputFocused = useSelector(inputFocusStatus);
 
-  // Function to handle filter note
   const handleButtonClick = (tag) => {
-    // Set the selected tag based on the button clicked
     setSelectedTag(tag);
-    dispatch(filterNoteByDate(tag)); // Dispatch the tag directly
+    dispatch(filterNoteByDate(tag));
   };
+  
+  const searchQuery = useSelector(searchKey)
 
   return (
-    <div className="flex items-center justify-between">
+    <motion.div
+      className="flex items-center justify-between"
+      initial="hidden"
+      animate={isInputFocused || searchQuery !== '' ? "hidden" : "visible"}
+      exit="hidden"
+      variants={variants}
+      transition={{ duration: 0.3 }} // Adjust duration as needed
+    >
       <div className="flex items-center gap-[1rem] mt-[2rem]">
         {filterTags.map((tag, i) => (
           <button
@@ -26,13 +40,13 @@ const Filter = () => {
               selectedTag === tag
                 ? "bg-[var(--accent-color)] text-white"
                 : "text-[var(--mute-color)] bg-[var(--ct-color)]"
-            } text-[.9rem] px-[.8rem] py-[.5rem] rounded-[50px]`}
+            } text-[.9rem] px-[.8rem] py-[.5rem] rounded-[50px] ${isInputFocused ? 'disabled': ''}`}
           >
             {tag}
           </button>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
