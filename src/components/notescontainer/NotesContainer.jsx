@@ -12,7 +12,7 @@ const variants = {
 const NotesContainer = ({ notes }) => {
   return (
     <motion.div
-      className="flex md:flex-col items-start gap-[4rem]"
+      className="flex flex-col md:flex-row items-start gap-[4rem]"
       initial="hidden"
       animate="visible"
       exit="hidden"

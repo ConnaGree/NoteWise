@@ -10,7 +10,7 @@ import './index.css';
 function App() {
 
   return (
-    <main className="px-[1rem] bg-[var(--bg-color)] md:px-[5rem] lg:px-[7px] relative w-full flex gap-[1rem]">
+    <main className="px-[1rem]  md:px-[5rem] lg:px-[7px] relative w-full flex gap-[1rem]">
       <SideBar />
       {/* <MainField /> */}
       <Routes>

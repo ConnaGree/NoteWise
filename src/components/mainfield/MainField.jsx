@@ -18,7 +18,7 @@ const MainField = () => {
 
 
   return (
-    <div className="w-full h-[100vh] p-[2rem]">
+    <div className="w-full h-auto p-[2rem]">
       <Nav />
       <>
         <Filter />
