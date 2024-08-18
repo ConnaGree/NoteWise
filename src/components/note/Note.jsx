@@ -34,7 +34,7 @@ const Note = ({ note }) => {
 
   return (
     <motion.div
-      className="shadow relative cursor-pointer flex flex-col gap-[1rem] rounded-md bg-[var(--ct-color)] p-[.8rem] w-[320px]"
+      className="shadow relative  cursor-pointer flex flex-col gap-[1rem] rounded-md bg-[var(--ct-color)] p-[.8rem] w-full md:w-[320px]"
       initial="hidden"
       animate="visible"
       exit="hidden"

@@ -80,8 +80,6 @@ const notesSlice = createSlice({
       );
       const startOfWeek = new Date(today);
       console.log(startOfWeek.setDate(today.getDate() - today.getDay() + 1)); // Start of this week (Monday)
-
-      console.log(startOfWeek)
       const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
 
       let filteredNotesByDate = [];

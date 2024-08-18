@@ -19,11 +19,6 @@ export const sideBarContent = [
         label: 'Trash',
         route: '/Trash'
     },
-    {
-        icon: <IoSettingsOutline />,
-        label: 'Settings',
-        route: '/Settings'
-    },
 ]
 
 export const filterTags = ['All', 'Today', 'This week', 'This month', 'Older']
