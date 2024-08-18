@@ -12,28 +12,25 @@ const variants = {
 const NotesContainer = ({ notes }) => {
   return (
     <motion.div
-      className="flex flex-col md:flex-row items-start gap-[4rem]"
+      className="flex md:flex-row items-start gap-4 md:gap-8"
       initial="hidden"
       animate="visible"
       exit="hidden"
       variants={variants}
       transition={{ duration: 0.3 }} // Adjust duration as needed
     >
-      <div className="pr-[1rem] w-[60%]">
+      <div className="w-full px-0 md:px-6">
         {notes.length === 0 ? (
-          <p className="mt-[3rem] text-center text-[var(--mute-color)]">
-            No notes so far...
-          </p>
+          <p className="mt-8 text-center text-gray-600">No notes so far...</p>
         ) : (
-          <div className="mt-[3rem] flex gap-[.7rem] flex-wrap">
+          <div className="mt-8 flex flex-wrap gap-4">
             {notes.map((note, i) => (
               <Note key={i} note={note} />
             ))}
           </div>
         )}
       </div>
-
-      <Quotes />
+      {/* Optional: Add Quotes or other content here */}
     </motion.div>
   );
 };

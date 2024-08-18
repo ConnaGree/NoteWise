@@ -31,7 +31,7 @@ const Quotes = () => {
       {stat === "loading" && <Spinner />}
       {stat === "succeeded" && <Quote quote={randomQuote} />}
       {stat === "failed" && (
-        <p className="px-[2px] py-[1.5px] rounded-[50px] bg-red-400 text-white text-[.8rem]">
+        <p className="px-[8px] py-[4px] rounded-[50px] bg-red-500 text-white text-[.8rem]">
           {err}
         </p>
       )}

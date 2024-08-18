@@ -7,7 +7,7 @@ import { GoArrowLeft } from "react-icons/go";
 const ShowFavorites = () => {
   const notes = useSelector(allFavNotes);
   return (
-    <div className="pt-[3rem] px-[2rem] w-full h-[100vh]">
+    <div className="pt-[2rem] md:pt-[3rem] px-[0] md:px-[2rem] w-full h-[100vh]">
       <div className="header flex items-center gap-[1rem]">
         <Link to={"/"} className="text-white">
           <GoArrowLeft className="text-[2rem]" />

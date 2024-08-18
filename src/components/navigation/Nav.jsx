@@ -53,9 +53,9 @@ const Nav = () => {
   };
 
   return (
-    <div className="flex items-center gap-[1rem] justify-between">
+    <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 justify-between w-full">
       <label
-        className="text-[var(--mute-color)] w-[60%] px-[1.3rem] py-[.9rem] shadow bg-[var(--ct-color)] rounded-[50px] text-[1rem] flex items-center justify-between"
+        className="text-[var(--mute-color)] w-full md:w-[60%] px-[2rem] py-[1rem] shadow bg-[var(--ct-color)] rounded-full text-sm flex items-center justify-between"
         htmlFor=""
       >
         <input
@@ -63,27 +63,27 @@ const Nav = () => {
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={handleQueryChange}
-          placeholder="Search note title..."
+          placeholder="Search by note title..."
           className="bg-transparent text-white outline-none w-full"
           type="text"
         />
-        <button onClick={handleSearch} className="search__button text-[1.5rem]">
+        <button onClick={handleSearch} className="text-xl">
           <LuSearch />
         </button>
       </label>
 
-      <div className="theme__toggle-add_note flex items-center gap-[.7rem]">
+      <div className="flex flex-col md:flex-row items-center gap-4 md:gap-2">
         <Link
-          to={"/EditNote"}
+          to="/EditNote"
           onClick={handleOpenEditor}
-          className="add__note flex items-center rounded-[50px] gap-[.3rem] bg-[var(--accent-color)] px-[1rem] py-[.4rem] text-[var(--title-color)]"
+          className="flex items-center rounded-full gap-2 bg-[var(--accent-color)] px-4 py-2 text-[var(--title-color)]"
         >
-          <IoAddSharp className="text-[1.2rem]" /> Add note
+          <IoAddSharp className="text-xl" /> Add note
         </Link>
 
         <button
           onClick={() => setIsLight(!isLight)}
-          className="text-[var(--accent-color)] text-[1.2rem]"
+          className="text-[var(--accent-color)] text-xl"
         >
           {isLight ? <FaRegMoon /> : <LuSunMedium />}
         </button>

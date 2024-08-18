@@ -39,10 +39,12 @@ const EditNote = () => {
   }
 
   return (
-    <div className=" mt-[3rem] py-[1rem] px-[2rem] h-[100vh] w-full">
+    <div className=" mt-[3rem] py-[1rem] px-0 md:px-[2rem] h-[100vh] w-full">
       <div className="header flex items-center gap-[1rem] mb-[2rem]">
-            <Link to={'/'} className="text-white flex items-center gap-[.5rem]"><GoArrowLeft className="text-[2rem]" /> Back to notes</Link>
-        </div>
+        <Link to={"/"} className="text-white flex items-center gap-[.5rem]">
+          <GoArrowLeft className="text-[2rem]" /> Back to notes
+        </Link>
+      </div>
       <form className="w-full flex flex-col gap-[1rem]" action="">
         <input
           onChange={(e) => setTitle(e.target.value)}
@@ -76,13 +78,14 @@ const EditNote = () => {
             Save <CiSaveDown1 className="text-[1.2rem]" />
           </button>
 
-          <button
-            onClick={handleCancelEdit}
-            className="flex items-center rounded-[50px] gap-[.3rem] bg-transparent border-[1px] px-[1rem] py-[.4rem] text-[1rem] text-white"
-            type="submit"
-          >
-            Cancel
-          </button>
+          <Link to={'/'}>
+            <button
+              onClick={handleCancelEdit}
+              className="flex items-center rounded-[50px] gap-[.3rem] bg-transparent border-[1px] px-[1rem] py-[.4rem] text-[1rem] text-white"
+            >
+              Cancel
+            </button>
+          </Link>
         </div>
       </form>
     </div>

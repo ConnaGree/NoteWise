@@ -11,13 +11,13 @@ const ViewNote = () => {
 
   return (
     <motion.div
-      className="py-[2rem] px-[2rem] h-[100vh]"
+      className="md:py-[2rem] md:px-[2rem] px-0 h-[100vh]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }} // Adjust duration as needed
     >
-      <div className="header flex items-center gap-[1rem]">
+      <div className="header flex flex-wrap items-center gap-[1rem]">
         <Link to={'/'} className="text-white">
           <GoArrowLeft className="text-[2rem]" />
         </Link>
